@@ -1,0 +1,6 @@
+case ("L"):
+                                System.out.println("Vilken sort vill du lägga till");
+                                String sort = input.next();
+                                String [] tmp = Arrays.copyOf(whiskey,whiskey.length+1);
+                                tmp [whiskey.length] = sort;
+                                whiskey = tmp;
