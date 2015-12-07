@@ -1,0 +1,76 @@
+import java.util.Arrays;
+import java.util.Scanner;
+
+
+public class Labb47 {
+    public static void main (String[] args)
+    {
+        
+         String[] whiskey = new String[0];
+                 String Fortsatta = "Yes";
+                 String kommando;
+                 int indx = 0;
+                 
+                 Scanner input = new Scanner(System.in);
+                    while (!Fortsatta.equalsIgnoreCase("Q")) {
+                        
+                        System.out.println("Vad vill du göra?\nL - för att lägga till.\nT - för att ta bort.\nU - för att uppdatera:\nQ - för att avsluta");
+                            kommando = input.next();
+                            
+                            switch (kommando) {
+                                case ("L"):
+                                            System.out.println("Vad vill du lägga till: ");
+                                                String lagg = input.next();
+                                                if (indx < whiskey.length) {
+                                                    whiskey[indx] = lagg;
+                                                    indx++;
+                                                } else {
+                                                    System.out.println("Vill du utöka din samling?");
+                                                    System.out.println("Ja eller Nej?");
+                                                        if(input.next().equalsIgnoreCase("Ja")){
+                                                        int storlek = whiskey.length+2;
+                                                        whiskey = Arrays.copyOf(whiskey,storlek);
+                                                        whiskey[indx] = lagg;
+                                                        indx++;
+                                                        }
+                                                }
+                                                System.out.println("Du har lagt till: " + Arrays.toString(whiskey));
+                                                System.out.println();
+                                    break;                
+                                case ("T"):
+                                            System.out.println("Ta bort.\nSkriv in vilken whiskeysort du vill ta bort");
+                                            String sort = input.next();
+                                                for (int i = 0; i < whiskey.length; i++) {
+                                                    if (whiskey[i].equalsIgnoreCase(sort)) {
+                                                        whiskey[i] = whiskey[indx - 1];
+                                                        whiskey[indx - 1] = null;
+                                                        indx--;
+                                                        break;
+                                                    }
+                                    }
+                                    System.out.println("Du har nu tagit bort " + Arrays.toString(whiskey));
+                                    System.out.println("");           
+                                    break;  
+                                case ("U"):    
+                                            System.out.println("Uppdatera.\nSkriv in den gamla titeln.");
+                                            String gamla = input.next();
+                                            System.out.println("Skriv in den nya titeln");
+                                            String nyWhiskey = input.next();
+                                                for (int i = 0; i < whiskey.length; i++) {
+                                                    if (whiskey[i].equalsIgnoreCase(gamla)) {
+                                                        whiskey[i] = nyWhiskey;
+                                                        break;    
+                             }   
+                         }
+                         System.out.println("Din nya whiskey är" + Arrays.toString(whiskey));
+                         System.out.println("");
+                                    break;
+                                    case "Q":
+                                    Fortsatta = "Q";
+                                
+                            }
+                        
+                    }
+        
+    }
+}
